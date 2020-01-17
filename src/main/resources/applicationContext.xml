@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.2.xsd"
+        >
+
+    <!--配置注解注入支持-->
+    <context:component-scan base-package="com.mvcoder.springmvc" />
+
+    <!--配置 aop 注解支持-->
+    <aop:aspectj-autoproxy/>
+
+    <bean id="address" class="com.mvcoder.springmvc.bean.Address">
+
+        <constructor-arg index="0" value="1234" />
+        <constructor-arg index="1" value="广东省广州市" />
+
+        <!--<constructor-arg name="addressId" value="1234" />
+        <constructor-arg name="addressName" value="广东省广州市" />-->
+    </bean>
+
+    <bean id="address2" class="com.mvcoder.springmvc.bean.Address">
+
+        <constructor-arg index="0" value="12345" />
+        <constructor-arg index="1" value="开侨中学" />
+
+        <!--<constructor-arg name="addressId" value="1234" />
+        <constructor-arg name="addressName" value="广东省广州市" />-->
+    </bean>
+
+    <!--
+        id 是代表该bean的唯一标识，可以方便其他bean引用和注解配置
+        scope 用来指定生命周期， singleton 是单例的意思，prototype是每创建一个bean，就会创建一个实例。
+            singleton初始化的时机就是在容器加载时就进行初始化了，可以通过lazy-init进行配置
+        init-method 可以指定实例的初始化方法，在创建完对象之后调用
+        destroy-method 可以用来做对象销毁前的清理工作
+
+        property 属性可以配置值，也可以引用其他对象作为属性进行配置
+        constructor-arg 可以用来配置构造函数的参数, 可以用index、参数名、类型进行配置，优先用index
+    -->
+    <bean id="user" class="com.mvcoder.springmvc.bean.User"
+          scope="singleton" init-method="init" destroy-method="destroy" lazy-init="true">
+        <property name="username" value="mvcoder" />
+        <property name="id" value="123456" />
+        <property name="address" ref="address" />
+    </bean>
+
+
+</beans>
