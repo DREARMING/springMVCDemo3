@@ -1,8 +1,5 @@
 package com.mvcoder.springmvc.bean;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-
 /**
  * Created by mvcoder on 2020/1/17.
  */
@@ -49,4 +46,12 @@ public class User {
         System.out.println("id : " + id + ", username:" + username + ", 居住于：" + address.getAddressName());
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", address=" + address +
+                '}';
+    }
 }
