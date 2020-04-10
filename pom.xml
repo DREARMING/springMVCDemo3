@@ -29,6 +29,13 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!--Spring核心基础依赖-->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -54,7 +61,7 @@
     <!--spring-mvc-->
     <dependency>
       <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
+      <artifactId>spring-webmvc</artifactId>
       <version>5.0.2.RELEASE</version>
     </dependency>
 
