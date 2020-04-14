@@ -5,30 +5,38 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
-<!--
-将某个web资源设置为网站首页；
-将servlet程序映射到某个url地址上；
-为web应用配置监听器；
-为web应用配置过滤器；
-配置web应用上下文参数、配置Session的参数；
-配置spring、springMVC等框架
--->
+    <!--
+    将某个web资源设置为网站首页；
+    将servlet程序映射到某个url地址上；
+    为web应用配置监听器；
+    为web应用配置过滤器；
+    配置web应用上下文参数、配置Session的参数；
+    配置spring、springMVC等框架
+    -->
 
-  <display-name>Archetype Created Web Application</display-name>
-    <!--<context-param>
-        <param-name/>
-        <param-value/>
-    </context-param>-->
-    
+
+    <!--spring 配置， 加载 applicationContext 的 bean 配置，否则在程序中没法找到-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <!-- resources 文件夹的路径就是 classpath -->
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- end -->
+
+
+    <display-name>Archetype Created Web Application</display-name>
     <servlet>
         <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>springmvc</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>
