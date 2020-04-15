@@ -1,0 +1,2 @@
+TYClassBrand_1.4.1_baotong_201909061758_publish -- 河北班牌的apk
+TYClassBrand_1.4.2_shimei_201910091729_publish -- 支持人脸识别的展会app
