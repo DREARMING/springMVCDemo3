@@ -1,12 +1,16 @@
 package com.mvcoder.springmvc.controller;
 
 import cn.hutool.json.JSONUtil;
+import com.mvcoder.springmvc.DaoInjectUtil;
 import com.mvcoder.springmvc.bean.User;
+import com.mvcoder.springmvc.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
+import javax.annotation.Resources;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -65,5 +69,13 @@ public class TestController {
         return JSONUtil.toJsonStr(user);
     }
 
+
+    @RequestMapping(value = "/user/{id}")
+    @ResponseBody
+    public User queryUserInfoById(@PathVariable Integer id){
+        UserDao userDao = DaoInjectUtil.getBean("userDao");
+        User user = userDao.selectUser(id);
+        return user;
+    }
 
 }

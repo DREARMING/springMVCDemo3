@@ -2,6 +2,7 @@ package test;
 
 import com.mvcoder.springmvc.bean.Student;
 import com.mvcoder.springmvc.bean.User;
+import com.mvcoder.springmvc.dao.UserDao;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -98,7 +99,7 @@ public class BeanTest {
     public void testMybatis() throws IOException {
         // 指定全局配置文件
         String resource = "mybatis/mybatis-config.xml";
-        // 读取配置文件
+
         InputStream inputStream = Resources.getResourceAsStream(resource);
         // 构建sqlSessionFactory
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
@@ -107,11 +108,22 @@ public class BeanTest {
         try {
             // 操作CRUD，第一个参数：指定statement，规则：命名空间+“.”+statementId
             // 第二个参数：指定传入sql的参数：这里是用户id
-            User user = sqlSession.selectOne("MyMapper.selectUser", 2);
+            User user = sqlSession.selectOne("com.mvcoder.springmvc.dao.UserDao.selectUser", 2);
             System.out.println(user);
         } finally {
             sqlSession.close();
         }
+    }
+
+    @Test
+    public void testMyBatisSpring(){
+        // 指定全局配置文件
+        String resource = "applicationContext.xml";
+        // 读取配置文件
+        ApplicationContext ctx = new ClassPathXmlApplicationContext(resource, "spring-dao.xml");
+        UserDao userDao = (UserDao) ctx.getBean("userDao");
+        User user = userDao.selectUser(2);
+        System.out.println(user);
     }
 
 }

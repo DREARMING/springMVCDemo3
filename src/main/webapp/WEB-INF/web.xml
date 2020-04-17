@@ -19,7 +19,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <!-- resources 文件夹的路径就是 classpath -->
-        <param-value>classpath:applicationContext.xml</param-value>
+        <param-value>classpath:applicationContext.xml,classpath:spring-dao.xml</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
